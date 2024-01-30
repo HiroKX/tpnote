@@ -14,4 +14,7 @@
         <mat-chip>{{style}}</mat-chip>
       </mat-chip-set>
   </mat-card-content>
+  <button mat-mini-fab color="warn" aria-label="Delete the music" (click)="deleteDate(music?.id?.toString())">
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-card>
