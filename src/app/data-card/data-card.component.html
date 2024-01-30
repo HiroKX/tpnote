@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{data.id}}</mat-card-title>
+    <mat-card-subtitle>{{data.name}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{data.details}}
+    </p>
+    <mat-divider/>
+    <mat-chip>
+      <mat-icon *ngFor="let star of [].constructor(data.rating)">star</mat-icon>
+    </mat-chip>
+  </mat-card-content>
+</mat-card>

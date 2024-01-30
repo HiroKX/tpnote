@@ -1,0 +1,29 @@
+<mat-card>
+  <mat-form-field>
+    <mat-label>Nom</mat-label>
+    <input matInput>
+    <mat-hint>Entrez le nom souhaité</mat-hint>
+  </mat-form-field>
+  <mat-label>Notation</mat-label>
+  <mat-slider min="0" max="5" step="1" showTickMarks discrete [displayWith]="formatLabel">
+    <input matSliderThumb>
+  </mat-slider>
+  <mat-form-field>
+    <mat-label>Détails</mat-label>
+    <textarea matInput placeholder="Détails">
+    </textarea>
+    <mat-hint>Écrivez les détails de votre item</mat-hint>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Possibilité de récupération </mat-label>
+    <mat-select required [(value)]="selection">
+        <mat-option value="no"> Non</mat-option>
+      <mat-option value="yes"> Oui</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+    <button mat-flat-button color="primary">Enregistrer</button>
+  <button mat-flat-button color="warn">Annuler</button>
+
+</mat-card>
+

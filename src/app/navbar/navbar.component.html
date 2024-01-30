@@ -1,0 +1,26 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side">
+    <mat-list>
+      <mat-list-item [routerLink]="['/home']" (click)="drawer.toggle()">
+        <span>Accueil</span>
+        <mat-icon>home</mat-icon>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/other']" (click)="drawer.toggle()">
+        <span>Other</span>
+        <mat-icon>table_chart</mat-icon>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/card/0']" (click)="drawer.toggle()">
+        <span>Cartes</span>
+        <mat-icon>grade</mat-icon>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['/add']" (click)="drawer.toggle()">
+        <span>Ajouter une DATA</span>
+        <mat-icon>gavel</mat-icon>
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+
+  <mat-drawer-content class="main-container">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
