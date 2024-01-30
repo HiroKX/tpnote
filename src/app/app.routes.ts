@@ -14,5 +14,4 @@ export const routes: Routes = [
   {path: 'card', component: MusicListComponent},
   {path: 'card/:id', component: MusicListComponent},
   {path: 'edit/:id', component: EditionComponent, resolve: { music: MusicDetailResolverResolver }},
-  {path: 'add', component: FormComponent},
 ];
