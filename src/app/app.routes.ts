@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { OtherComponent } from './other/other.component';
-import { MusicListComponent } from './data-card/./music-list.component';
+import { MusicListComponent } from './data-card/music-list.component';
 import { FormComponent } from './form/form.component';
+import {EditionComponent} from "./edition-component/edition-component.component";
+import {MusicDetailResolverResolver} from "./music-detail-resolver.resolver";
 
 export const routes: Routes = [
   {path: '', redirectTo:'home', pathMatch: 'full'},
@@ -11,5 +13,6 @@ export const routes: Routes = [
   {path: 'random', component: MusicListComponent},
   {path: 'card', component: MusicListComponent},
   {path: 'card/:id', component: MusicListComponent},
+  {path: 'edit/:id', component: EditionComponent, resolve: { music: MusicDetailResolverResolver }},
   {path: 'add', component: FormComponent},
 ];

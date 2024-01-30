@@ -8,7 +8,6 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatIcon } from '@angular/material/icon';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {APIService} from "../service/api.service";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {MusicCardComponent} from "../music-card/music-card.component";
 import {AjoutMusicComponent} from "../ajout-music/ajout-music.component";
 import {mergeMap} from "rxjs";
