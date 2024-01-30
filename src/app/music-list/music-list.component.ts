@@ -25,7 +25,6 @@ export class MusicListComponent implements OnInit {
 
 
   private addDialog: MatDialogRef<AjoutMusicComponent> | any;
-  music: Music[] = [];
   dialogStatus = 'inactive';
 
   constructor(private route : ActivatedRoute, private api : APIService, public dialog: MatDialog) {
@@ -66,7 +65,7 @@ export class MusicListComponent implements OnInit {
       .create(musicCreated)
       .pipe(mergeMap(() => this.api.fetch()))
       .subscribe(music => {
-        this.music = music;
+        this.data = music;
         this.hideDialog();
       });
   }
