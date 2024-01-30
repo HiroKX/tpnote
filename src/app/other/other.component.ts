@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, ViewChild, OnInit} from '@angular/core';
+import {Component, AfterViewInit, ViewChild, OnInit, ChangeDetectorRef} from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import { RouterModule } from '@angular/router';
@@ -20,7 +20,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class OtherComponent implements AfterViewInit, OnInit {
   dataSource : MatTableDataSource<Music> = new MatTableDataSource<Music>();
-  constructor(private api : APIService, private snackbar : MatSnackBar) {}
+  constructor(private api : APIService, private snackbar : MatSnackBar, private cdr: ChangeDetectorRef) {}
 
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
@@ -44,7 +44,12 @@ export class OtherComponent implements AfterViewInit, OnInit {
   }
   deleteDate(id : string) {
     this.snackbar.open("La musique va être supprimée");
-    this.api.delete(id);
+    this.api.delete(id).subscribe((musics) => {
+      this.dataSource = musics;
+      this.api.updatedMusicList(id);
+      this.cdr.markForCheck();
+      }
+    );
   }
 
 }

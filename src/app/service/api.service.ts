@@ -48,7 +48,6 @@ export class APIService {
   }
 
   delete(id: string): Observable<any> {
-    console.log('delete')
     return this.http.delete(this.urlServer.deleteById.replace(':id', id));
   }
 
