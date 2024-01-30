@@ -58,7 +58,7 @@ export class FormComponent implements OnInit{
       album: this.musicModel.album,
       artist: this.musicModel.artist,
       duration: this.musicModel.duration,
-      date: this.musicModel.date ?? DateHandlingService.new(),
+      date: this.musicModel.date || DateHandlingService.new(),
       styles: this.musicModel.styles || [],
       picture: this.musicModel.picture
     });
@@ -70,7 +70,7 @@ export class FormComponent implements OnInit{
 
   submit(music: Music) {
     music.picture = this.musicModel.picture;
-    music.date = DateHandlingService.to_ddMMyyyy(music.date, "MM/dd/yyyy");
+    // music.date = DateHandlingService.to_ddMMyyyy(music.date, "MM/dd/yyyy");
     this.submitEvent$.emit(music);
   }
 
