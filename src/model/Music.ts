@@ -10,4 +10,4 @@ export interface Music {
   picture?: string | ArrayBuffer | null      // path of the image
 }
 
-export const keys = ["id", "title", "description", "album", "artist", "duration", "date", "styles", "picture"];
+export const keys = ["id", "title", "description", "album", "artist", "duration", "date", "styles", "picture", "action"];

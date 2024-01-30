@@ -32,7 +32,6 @@ export class OtherComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource<Music>(musics);
     });
   this.displayedColumns = keys;
-  this.displayedColumns.push('action');
   }
 
   ngAfterViewInit() {
