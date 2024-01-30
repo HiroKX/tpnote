@@ -1,29 +1,128 @@
-<mat-card>
-  <mat-form-field>
-    <mat-label>Nom</mat-label>
-    <input matInput>
-    <mat-hint>Entrez le nom souhaité</mat-hint>
-  </mat-form-field>
-  <mat-label>Notation</mat-label>
-  <mat-slider min="0" max="5" step="1" showTickMarks discrete [displayWith]="formatLabel">
-    <input matSliderThumb>
-  </mat-slider>
-  <mat-form-field>
-    <mat-label>Détails</mat-label>
-    <textarea matInput placeholder="Détails">
-    </textarea>
-    <mat-hint>Écrivez les détails de votre item</mat-hint>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Possibilité de récupération </mat-label>
-    <mat-select required [(value)]="selection">
-        <mat-option value="no"> Non</mat-option>
-      <mat-option value="yes"> Oui</mat-option>
-    </mat-select>
-  </mat-form-field>
+<mat-card class="mat-whiteframe-2dp">
+  <mat-card-title><span>➕ Créer un titre</span></mat-card-title>
 
-    <button mat-flat-button color="primary">Enregistrer</button>
-  <button mat-flat-button color="warn">Annuler</button>
+  <mat-card-content>
+    <form novalidate [formGroup]="form">
 
+      <p [class.errors]="form.get('title')!.invalid && (form.get('title')!.dirty || form.get('title')!.touched)">
+        <mat-form-field class="title">
+          <mat-label>Titre</mat-label>
+          <input formControlName="title" name="title" matInput placeholder="Ex: De LaMarre" required/>
+          @if (form.get('title')!.errors?.['required']) {
+            <mat-error>Le titre est obligatoire</mat-error>
+          }
+          @if (form.get('title')!.dirty && form.get('title')!.errors?.['minlength']) {
+            <mat-error>Le titre doit avoir au moins 2 caractères</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="description">
+          <mat-label>Description</mat-label>
+          <input formControlName="description" matInput placeholder="Ex: Description" name="description" required/>
+          @if (form.get('description')!.errors?.['required']) {
+            <mat-error>La description est obligatoire</mat-error>
+          }
+          @if (form.get('description')!.dirty && form.get('description')!.errors?.['minlength']) {
+            <mat-error>La description doit avoir au moins 2 caractères</mat-error>
+          }        </mat-form-field>
+        <mat-form-field class="album">
+          <mat-label>Album</mat-label>
+          <input formControlName="album" matInput placeholder="Ex: Deus Ex Machina" name="album" required/>
+          @if (form.get('album')!.errors?.['required']) {
+            <mat-error>L'album est obligatoire</mat-error>
+          }
+          @if (form.get('album')!.dirty && form.get('album')!.errors?.['minlength']) {
+            <mat-error>L'album doit avoir au moins 2 caractères</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="artist">
+          <mat-label>Artist</mat-label>
+          <input formControlName="artist" matInput placeholder="Ex: Tim Branstett" name="artist" required/>
+          @if (form.get('artist')!.errors?.['required']) {
+            <mat-error>L'artiste est obligatoire</mat-error>
+          }
+          @if (form.get('artist')!.dirty && form.get('artist')!.errors?.['minlength']) {
+            <mat-error>L'artiste doit avoir au moins 2 caractères</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="duration">
+          <mat-label>Durée du titre</mat-label>
+          <input formControlName="duration" matInput placeholder="Ex: 1:20" name="duration" required/>
+          @if (form.get('duration')!.errors?.['required']) {
+            <mat-error>La durée du titre obligatoire</mat-error>
+          }
+          @if (form.get('duration')!.dirty && form.get('duration')!.errors?.['minlength']) {
+            <mat-error>La durée du titre doit avoir au moins 2 caractères</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="date">
+          <mat-label>Date de sortie</mat-label>
+          <input matInput name="date" required [matDatepicker]="picker">
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          @if (form.get('date')!.errors?.['required']) {
+            <mat-error>La date de sortie est obligatoire</mat-error>
+          }
+          @if (form.get('date')!.dirty && form.get('date')!.errors?.['minlength']) {
+            <mat-error>La date de sortie doit avoir au moins 2 caractères</mat-error>
+          }
+        </mat-form-field>
+      </p>
+
+
+      <p>
+        <mat-form-field class="chip-list">
+          <mat-label>
+            <mat-icon>work</mat-icon>
+            Styles de musique :
+          </mat-label>
+          <mat-chip-grid #chipList aria-label="Styles de musique">
+            @for (style of musicModel.styles; track style) {
+              <mat-chip-row (removed)="removeChipset(style)" [editable]="true">
+                {{ style }}
+                <button matChipRemove [attr.aria-label]="'remove ' + style">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            }
+            <input placeholder="Ex: Chirurgien..."
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   (matChipInputTokenEnd)="addChipset($event)">
+          </mat-chip-grid>
+        </mat-form-field>
+      </p>
+
+      <input #fileInput type="file" (change)="onFileSelected($event)" name="picture" style="display: none;"
+             accept=".png,.jpg"/>
+      @if (musicModel.picture) {
+        <div>
+          <img width="100" src="{{musicModel.picture}}" alt="Photo de l'employé"/> <br>
+          <button mat-flat-button color="warn" (click)="musicModel.picture = null;">
+            <mat-icon>
+              cancel
+            </mat-icon>
+          </button>
+        </div>
+      }
+      @if (!musicModel.picture) {
+        <div class="file-upload">
+          <button type="button" (click)="fileInput.click()" mat-fab>
+            <mat-icon>
+              image
+            </mat-icon>
+          </button>
+        </div>
+      }
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button type="button" (click)="cancel()">Annuler</button>
+    <button mat-button type="submit" color="primary" (click)="submit(form.value)" [disabled]="!form.valid">Valider
+    </button>
+  </mat-card-actions>
 </mat-card>
 

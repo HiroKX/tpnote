@@ -6,11 +6,13 @@ import { CommonModule} from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { TimeService } from '../service/time.service';
+import {AjoutMusicComponent} from "../ajout-music/ajout-music.component";
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, NavbarComponent],
+  imports: [CommonModule, MatToolbarModule, MatIconModule, MatButtonModule, MatSidenavModule, NavbarComponent, AjoutMusicComponent],
   providers: [TimeService],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -24,4 +26,5 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }

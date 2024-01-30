@@ -1,0 +1,17 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ music?.title }} - {{ music?.album }} - {{ displayDate(music?.date) }}</mat-card-title>
+    <mat-card-subtitle>{{ music?.artist }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <img *ngIf="music?.picture" width="100px" loading="eager" src="{{music?.picture}}" alt="{{music?.artist}} - {{music?.title}}"/>
+    <p>{{ music?.description }}</p>
+    <mat-divider></mat-divider>
+    <h2>{{ music?.duration }}</h2>
+    <mat-divider></mat-divider>
+      <h1>Styles</h1>
+      <mat-chip-set *ngFor="let style of music?.styles">
+        <mat-chip>{{style}}</mat-chip>
+      </mat-chip-set>
+  </mat-card-content>
+</mat-card>

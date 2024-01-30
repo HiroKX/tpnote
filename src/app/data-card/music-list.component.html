@@ -1,0 +1,6 @@
+<ng-container *ngFor="let music of data" >
+  <app-music-card [music]="music"></app-music-card>
+</ng-container>
+<button (click)="showDialog()" mat-fab color="accent" class="button-add">
+  <em class="material-icons">add</em>
+</button>
