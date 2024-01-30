@@ -1,3 +1,12 @@
+# Pour lancer le projet
+Il vous faut savoir votre port et adresse du backend.
+
+En suite, il faut aller dans ce fichier : [env.ts](./src/app/environment/env.ts) et changer l'adresse et le port du backend afin qu'il corresponde avec ce que vous avez de base.
+
+Il vous faut en suite lancer l'application avec la commande ng serve. Elle ecoutera alros sur le port 4200 ou le port de base.
+
+
+
 # TrainingSession
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.

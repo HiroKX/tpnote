@@ -14,7 +14,7 @@ import {mergeMap} from "rxjs";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-data-card',
+  selector: 'app-music-list',
   standalone: true,
   imports: [CommonModule, MatButtonModule, MatCardModule, MatDividerModule, MatChipsModule, MatIcon, NgOptimizedImage, MusicCardComponent],
   templateUrl: './music-list.component.html',

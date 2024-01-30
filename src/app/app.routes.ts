@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { OtherComponent } from './other/other.component';
-import { MusicListComponent } from './data-card/music-list.component';
+import { MusicListComponent } from '././music-list/music-list.component';
 import { FormComponent } from './form/form.component';
 import {EditionComponent} from "./edition-component/edition-component.component";
 import {MusicDetailResolverResolver} from "./music-detail-resolver.resolver";

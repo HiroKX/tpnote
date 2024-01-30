@@ -37,12 +37,12 @@ export class EditionComponent implements OnInit {
 
   submit(employe: any) {
     this.api.update(employe).subscribe(() => {
-      this.router.navigate(['/home']).then(r => null);
+      this.router.navigate(['/card']).then(r => null);
     });
   }
 
   cancel() {
-    this.router.navigate(['/home']).then(r => null);
+    this.router.navigate(['/card']).then(r => null);
   }
 
 }
