@@ -9,6 +9,6 @@ export class DateHandlingService {
     return DateTime.fromISO(date).toFormat(format ?? 'dd/MM/yyyy');
   }
   public static new() : string {
-    return DateTime.now().toFormat("dd/MM/yyyy");
+    return DateTime.now().toFormat("MM/dd/yyyy");
   }
 }
